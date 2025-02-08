@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="stats">
+            <div class="stat-text">
+                <p>Hearts per Click: </p><span class="hpc">1</span>
+                <p>Hearts per Second: </p><span class="hps">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div id="error-message" class="hidden">Insufficient Funds!</div>
+
+    <div id="final-upgrade" class="hidden" onclick="pressFinalUpgrade()">
+        <div class="left-section">
+            <img src="/assets/sil.png" alt="" srcset="" class="matcha-img">
+        </div>
+        <div class="mid-section">
+            <h4>???</h4>
+            <div class="cost-info">
+                <p class="cost-text">
+                    <span class="sil-cost">8000000000</span>
+                    <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                </p>
+            </div>
+        </div>
+        <div class="right-section">
+            Level <span class="sil-level">0</span>
+        </div>
+        <div class="next-level-info">
+            <p>
+                + ??? hearts </br> per second
+            </p>
+        </div>
+    </div>
+
+    <div id="overlay" class="hidden"></div>
+
+    <section>
+        <div class="main">
+            <div class="left">
+                <p>
+                    Hearts <br /><span class="heart-count">0</span>
+                </p>
+                <div class="joli-img-container">
+                    <img src="./assets/joli1.png" alt="" srcset="" class="joli-img" id="joli-id" onclick="incrementHeart(event)" draggable="false">
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="upgrade" onclick="buyUpgrade('matcha')">
+                    <div class="left-section">
+                        <img src="/assets/matcha.png" alt="" srcset="" class="matcha-img">
+                    </div>
+                    <div class="mid-section">
+                        <h4>Matcha</h4>
+                        <div class="cost-info">
+                            <p class="cost-text">
+                                <span class="matcha-cost">10</span>
+                                <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        Level <span class="matcha-level">0</span>
+                    </div>
+                    <div class="next-level-info">
+                        <p>
+                            + <span class="matcha-increase">3</span> hearts </br> per click
+                        </p>
+                    </div>
+                </div>
+
+                <div class="upgrade hidden" onclick="buyUpgrade('spike')">
+                    <div class="left-section">
+                        <img src="/assets/spike.png" alt="" srcset="" class="matcha-img">
+                    </div>
+                    <div class="mid-section">
+                        <h4>Spike</h4>
+                        <div class="cost-info">
+                            <p class="cost-text">
+                                <span class="spike-cost">100</span>
+                                <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        Level <span class="spike-level">0</span>
+                    </div>
+                    <div class="next-level-info">
+                        <p>
+                            + <span class="spike-increase">15</span> hearts </br> per second
+                        </p>
+                    </div>
+                </div>
+
+                <div class="upgrade hidden" onclick="buyUpgrade('hello-kitty')">
+                    <div class="left-section">
+                        <img src="/assets/hello-kitty.png" alt="" srcset="" class="matcha-img">
+                    </div>
+                    <div class="mid-section">
+                        <h4>Hello Kitty</h4>
+                        <div class="cost-info">
+                            <p class="cost-text">
+                                <span class="hello-kitty-cost">500</span>
+                                <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        Level <span class="hello-kitty-level">0</span>
+                    </div>
+                    <div class="next-level-info">
+                        <p>
+                            + <span class="hello-kitty-increase">75</span> hearts </br> per second
+                        </p>
+                    </div>
+                </div>
+
+                <div class="upgrade hidden" onclick="buyUpgrade('pink-whitney')">
+                    <div class="left-section">
+                        <img src="/assets/pink-whitney.png" alt="" srcset="" class="matcha-img">
+                    </div>
+                    <div class="mid-section">
+                        <h4>Pink Whitney</h4>
+                        <div class="cost-info">
+                            <p class="cost-text">
+                                <span class="pink-whitney-cost">5000</span>
+                                <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        Level <span class="pink-whitney-level">0</span>
+                    </div>
+                    <div class="next-level-info">
+                        <p>
+                            + <span class="pink-whitney-increase">375</span> hearts </br> per second
+                        </p>
+                    </div>
+                </div>
+
+                <div class="upgrade hidden" onclick="buyUpgrade('buffet')">
+                    <div class="left-section">
+                        <img src="/assets/buffet.png" alt="" srcset="" class="matcha-img">
+                    </div>
+                    <div class="mid-section">
+                        <h4>Buffet</h4>
+                        <div class="cost-info">
+                            <p class="cost-text">
+                                <span class="buffet-cost">50000</span>
+                                <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        Level <span class="buffet-level">0</span>
+                    </div>
+                    <div class="next-level-info">
+                        <p>
+                            + <span class="buffet-increase">2000</span> hearts </br> per second
+                        </p>
+                    </div>
+                </div>
+
+                <div class="upgrade hidden" onclick="buyUpgrade('uzi')">
+                    <div class="left-section">
+                        <img src="/assets/uzi.png" alt="" srcset="" class="matcha-img">
+                    </div>
+                    <div class="mid-section">
+                        <h4>Uzi</h4>
+                        <div class="cost-info">
+                            <p class="cost-text">
+                                <span class="uzi-cost">500000</span>
+                                <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        Level <span class="uzi-level">0</span>
+                    </div>
+                    <div class="next-level-info">
+                        <p>
+                            + <span class="uzi-increase">10000</span> hearts </br> per second
+                        </p>
+                    </div>
+                </div>
+
+                <div class="upgrade hidden" onclick="buyUpgrade('mustang')">
+                    <div class="left-section">
+                        <img src="/assets/mustang.png" alt="" srcset="" class="matcha-img">
+                    </div>
+                    <div class="mid-section">
+                        <h4>Mustang</h4>
+                        <div class="cost-info">
+                            <p class="cost-text">
+                                <span class="mustang-cost">5000000</span>
+                                <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        Level <span class="mustang-level">0</span>
+                    </div>
+                    <div class="next-level-info">
+                        <p>
+                            + <span class="mustang-increase">30000</span> hearts </br> per second
+                        </p>
+                    </div>
+                </div>
+
+                <div class="upgrade hidden" onclick="buyUpgrade('babies')">
+                    <div class="left-section">
+                        <img src="/assets/babies.png" alt="" srcset="" class="matcha-img">
+                    </div>
+                    <div class="mid-section">
+                        <h4>Luffy and Lyla</h4>
+                        <div class="cost-info">
+                            <p class="cost-text">
+                                <span class="babies-cost">50000000</span>
+                                <img src="assets/heart.png" alt="" srcset="" class="heart-img">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        Level <span class="babies-level">0</span>
+                    </div>
+                    <div class="next-level-info">
+                        <p>
+                            + <span class="babies-increase">90000</span> hearts </br> per second
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
