@@ -96,6 +96,11 @@ let heartsPerSecond = 0
 
 let bgm = new Audio('./assets/audio/bgm.mp3')
 bgm.volume = 0.05
+bgm.loop = true  
+
+document.addEventListener("DOMContentLoaded", () => {
+    bgm.play().catch(error => console.log("Autoplay blocked:", error))
+})
 
 function incrementHeart(event){
     let clickSound = new Audio('./assets/audio/pop.mp3')
@@ -184,7 +189,6 @@ setInterval(() => {
     heart.innerHTML = Math.round(parsedHeart += heartsPerSecond / 10)
     hpcText.innerHTML = Math.round(heartsPerClick)
     hpsText.innerHTML = Math.round(heartsPerSecond)
-    bgm.play()
     showUpgrade()
 
     if (parsedHeart >= 8000000000) {
