@@ -286,4 +286,6 @@ header {
 .us-img{
     height: 360px;
     width: auto;
+    position: relative;
+    z-index: 2;
 }

@@ -98,9 +98,9 @@ let bgm = new Audio('./assets/audio/bgm.mp3')
 bgm.volume = 0.05
 bgm.loop = true  
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("click", () => {
     bgm.play().catch(error => console.log("Autoplay blocked:", error))
-})
+}, {once: true})
 
 function incrementHeart(event){
     let clickSound = new Audio('./assets/audio/pop.mp3')
@@ -273,29 +273,133 @@ function pressFinalUpgrade() {
 
 
 function sayYes() {
-    // Fade out effect before transition
+    epic.pause()
+    epic.currentTime = 0
+
+    let win = new Audio('./assets/audio/win.mp3')
+    win.play()
+
     document.body.style.transition = "opacity 1s"
     document.body.style.opacity = "0"
 
     setTimeout(() => {
         document.body.innerHTML = `
-            <div style="
+            <div id="container" style="
                 height: 100vh; 
                 width: 100vw;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;">
+                justify-content: center;
+                overflow: hidden;
+                position: relative">
 
-                <img src="./assets/us.png" class="us-img">
+                <img src="./assets/us.png" class="us-img" id="center-img" draggable="false">
                 <h1>I love you!</h1>
             </div>
         `
         document.body.style.opacity = "1"
-    }, 1000)
+
+        addBouncingGifs()
+    }, 1690)
+}
+
+function addBouncingGifs() {
+    const container = document.getElementById('container')
+    const centerImg = document.getElementById('center-img')
+    
+    const gifNames = [
+        "./assets/dog.gif",
+        "./assets/eric.gif",
+        "./assets/frog.gif",
+        "./assets/goku.gif",
+        "./assets/mario.gif",
+        "./assets/sqrl.gif"
+    ]
+
+    const gifs = []
+
+    const positions = [
+        {x: 50, y: 50},
+        { x: window.innerWidth - 150, y: 50 },
+        { x: 50, y: window.innerHeight - 150 },  
+        { x: window.innerWidth - 150, y: window.innerHeight - 150 }, 
+        { x: window.innerWidth / 4 - 10, y: window.innerHeight / 2 },  
+        { x: (window.innerWidth / 4) * 3, y: window.innerHeight / 2 }
+    ]
+
+    for(let i = 0; i < 6; i++){
+        let gif = document.createElement("img")
+
+        gif.src = gifNames[i]
+        gif.classList.add("bouncing-gif")
+        gif.draggable = false
+
+        let{x, y} = positions[i]
+
+        let dx = (Math.random() - 0.5) * 4
+        let dy = (Math.random() - 0.5) * 4
+
+        
+
+        gif.style.cssText = `
+            position: absolute;
+            width: 120px; 
+            height: auto;
+            left: ${x}px;
+            top: ${y}px;
+            z-index: 1;
+        `
+
+        container.appendChild(gif);
+        gifs.push({ element: gif, x, y, dx, dy })
+    }
+
+    function updateGifs() {
+        gifs.forEach(gif => {
+            let { element, x, y, dx, dy } = gif
+
+            if (x <= 0 || x + element.offsetWidth >= window.innerWidth) {
+                gif.dx = -dx
+            }
+            if (y <= 0 || y + element.offsetHeight >= window.innerHeight) {
+                gif.dy = -dy
+            }
+
+            let imgRect = centerImg.getBoundingClientRect()
+            let gifRect = element.getBoundingClientRect()
+
+            if (
+                gifRect.right > imgRect.left &&
+                gifRect.left < imgRect.right &&
+                gifRect.bottom > imgRect.top &&
+                gifRect.top < imgRect.bottom
+            ) {
+                gif.dx = -dx; 
+                gif.dy = -dy; 
+            }
+
+            gif.x += gif.dx;
+            gif.y += gif.dy;
+            element.style.left = gif.x + "px";
+            element.style.top = gif.y + "px";
+        });
+
+        requestAnimationFrame(updateGifs);
+    }
+
+    updateGifs();
+
 }
 
 function sayNo() {
+    epic.pause()
+    epic.currentTime = 0
+
+    let bruh = new Audio('./assets/audio/bruh.mp3')
+    bruh.currentTime = 0
+    bruh.play()
+    
     let emojiOverlay = document.createElement("div")
     emojiOverlay.innerHTML = "😡"
     emojiOverlay.style.cssText = `
@@ -332,11 +436,11 @@ function sayNo() {
 
     setTimeout(() => {
         emojiOverlay.style.opacity = "0"
-    }, 3000)
+    }, 7000)
 
     setTimeout(() => {
         location.reload()
-    }, 4000)
+    }, 8000)
 }
 
 
