@@ -98,7 +98,7 @@ let bgm = new Audio('./assets/audio/bgm.mp3')
 bgm.volume = 0.05
 
 function incrementHeart(event){
-    let clickSound = new Audio('/assets/audio/pop.mp3')
+    let clickSound = new Audio('./assets/audio/pop.mp3')
     clickSound.volume = 0.8
     clickSound.play()
     heart.innerHTML = Math.round(parsedHeart += heartsPerClick)
@@ -138,7 +138,7 @@ function buyUpgrade(upgrade){
     })
 
     if(parsedHeart >= Math.floor(chosenUpgrade.parsedCost)){
-        let upgradeSound = new Audio('/assets/audio/upgrade-sound.mp3')
+        let upgradeSound = new Audio('./assets/audio/upgrade-sound.mp3')
         upgradeSound.play()
 
         heart.innerHTML = Math.round(parsedHeart-=chosenUpgrade.parsedCost)
@@ -168,7 +168,7 @@ function showErrorMessage() {
 
     errorMessage.style.display = "block"
 
-    let error = new Audio('/assets/audio/error.mp3')
+    let error = new Audio('./assets/audio/error.mp3')
     error.play()
 
     setTimeout(() => {
@@ -176,7 +176,7 @@ function showErrorMessage() {
     }, 1000)
 }
 
-let epic = new Audio('/assets/audio/epic.mp3')
+let epic = new Audio('./assets/audio/epic.mp3')
 epic.currentTime = 28.8
 epic.volume = 0.2
 
@@ -283,7 +283,7 @@ function sayYes() {
                 align-items: center;
                 justify-content: center;">
 
-                <img src="/assets/us.png" class="us-img">
+                <img src="./assets/us.png" class="us-img">
                 <h1>I love you!</h1>
             </div>
         `
